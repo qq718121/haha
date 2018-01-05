@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--禁止百度的转码显示-->
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!--WebApp全屏模式   隐藏地址栏-->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/common.min.css">
+    <link rel="stylesheet" href="./css/first_page.min.css">
+    <link rel="stylesheet" href="./css/index.min.css">
+    <!-- libs-css -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/examples.min.css"/>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/animate.min.css">
+</head>
+<body>
+<header>
+    <nav class="nav_ active_one navbar navbar-default" role="navigation">
+        <div class="nav_continer">
+            <div class="header_logo"><img src='http://oxrgdeqd8.bkt.clouddn.com/logo-white@3x.png' alt=""></div>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="active_icon_white navbar-toggle" data-toggle="collapse"
+                            data-target="#example-navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                    <ul id="nav_avtive" class=" nav navbar-nav  navbar-right">
+                        <li class="active"><a href="#/home">首页</a></li>
+                        <li><a href="#/down">下载</a></li>
+                        <li><a href="#/serve">服务</a></li>
+                        <li><a href="#/about">关于</a></li>
+                    </ul>
+                </div>
+                <span class="page_icon"></span>
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+
+</div>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/libs/examples.min.js"></script>
+<!--<script type="text/javascript" src="js/first_section.min.js"></script>-->
+<script type="text/javascript" src="js/libs/vipspa.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.fullPage.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+
+<!--<script type="text/javascript" src="js/build.min.js"></script>-->
+
+
+<!--&lt;!&ndash;[if lt IE 9]>-->
+<!--<script src=http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js></script>-->
+<!--<![endif]&ndash;&gt;-->
+<script>
+    vipspa.start({
+        view: '#content',// 页面路由的div
+        router: {
+            '/home': {
+                templateUrl: 'components/home.html',
+                controller: 'js/home.min.js'
+            },
+            '/down': {
+                templateUrl: 'components/down.html',
+                controller: 'js/first_section.min.js'
+            },
+            '/serve': {
+                templateUrl: 'components/serve.html',
+                controller: 'js/first_section.min.js'
+            },
+            '/about': {
+                templateUrl: 'components/about.html',
+                controller: 'js/first_section.min.js'
+            },
+            'defaults': '/home'
+        },
+        errorTemplateId: '#error'//错误显示页面
+    });
+    var div = $('.page_icon');
+    var position;
+    var target;
+    var tween, tweenBack;
+    var pos;
+
+    function init(index) {
+
+        position = {x: 219};
+        target = $('.page_icon');
+        pos = {x: -68 * index + 287 + 'px'};
+        tween = new TWEEN.Tween(position)
+            .to(pos, 1)
+            .easing(TWEEN.Easing.Linear.None)
+            .onUpdate(update);
+        tween.start();
+    }
+
+    function animate(time) {
+        requestAnimationFrame(animate);
+        TWEEN.update(time);
+    }
+
+    function update() {
+        target[0].style.right = position.x + 'px';
+    }
+
+    //导航滑动特效
+    function nav_effect() {
+
+        let ul = $('#nav_avtive li');
+        $.each(ul, function (index, value) {
+            $(this).click(function () {
+                let index = $(this).index() + 1;
+                init(index);
+                animate(1);
+                for (let i = 0, len = ul.length; i < len; i++) {
+                    ul[i].className = null;
+                    continue;
+                }
+                this.className = 'active';
+            });
+        });
+    }
+
+    //导航栏切换
+    function nav_scrool(index) {
+        if (index == 1) {
+
+            $('nav').removeClass('active_all');
+            $('nav').addClass('active_one');
+            $('#nav_avtive').removeClass('active_all');
+            $('#nav_avtive').addClass('active_one');
+            $('.header_logo img').attr('src', 'http://oxrgdeqd8.bkt.clouddn.com/logo-white@3x.png');
+            $('.navbar-toggle').removeClass('active_icon_black');
+            $('.navbar-toggle').addClass('active_icon_white');
+            $('#fp-nav').removeClass('right_change_blue');
+            $('#fp-nav').addClass('right_change_white');
+            div.removeClass('page_icon_active');
+        } else {
+
+            $('nav').removeClass('active_one').addClass('active_all');
+            $('#nav_avtive').removeClass('active_one').addClass('active_all');
+            $('.header_logo img').attr('src', 'http://oxrgdeqd8.bkt.clouddn.com/logo-blue@3x.png');
+            $('.navbar-toggle').addClass('active_icon_black');
+            $('#fp-nav').removeClass('right_change_white');
+            $('#fp-nav').addClass('right_change_blue');
+            div.addClass('page_icon_active');
+        }
+    }
+
+    //动画创建
+    function animated($, re, add) {
+        $.removeClass(re).addClass(add);
+    }
+
+    var class_animated = function (one, two, three, four, five, six, seven, eight) {
+        var len = arguments.length;
+        var arr = [];
+        var num = 0;
+        for (var i = 0; i < len; i++) {
+            if (arguments[i]) {
+                var defualt = `${arguments[i]}Animate`;
+                arr.push(defualt);
+                var j = $(`.${arr[i]}`);
+                (function (e) {
+                    setTimeout(function () {
+                        animated(e, 'fadeOutTopBig', 'fadeInUpBig');
+                    }, num);
+                    setTimeout(function () {
+                        animated(e, 'fadeInUpBig', '');
+                    }, 2000);
+                })(j);
+                num += 50;
+            }
+            continue;
+        }
+    };
+
+    function removeClass(index, nextIndex) {
+        if (index !== nextIndex) {
+            switch (index) {
+                case 1:
+                    class_animated('lx_one', 'lx_two', 'lx_three');
+                    break;
+                case 2:
+                    class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six');
+                    break;
+                case 3:
+                    class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven');
+                    break;
+                case 4:
+                    class_animated('zy_one', 'zy_two', 'zy_three', 'zy_four', 'zy_five', 'zy_six', 'zy_seven', 'zy_eight');
+                    break;
+                case 5:
+                    class_animated('yy_one', 'yy_two', 'yy_three', 'yy_four', 'yy_five', 'yy_six', 'yy_seven', 'yy_eight');
+                    break;
+            }
+        }
+    }
+
+    function icon_animate(index) {
+        switch (index) {
+            case 1:
+                break;
+            case 2:
+                animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
+                animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+                setTimeout(function () {
+                    animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
+                    animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                }, 850);
+                animated($('.advantage_container_left'), '', 'twoSection_container_left_animate');
+                animated($('.advantage_container_right'), '', 'twoSection_container_right_animate');
+                setTimeout(function () {
+                    animated($('.advantage_container_left'), 'twoSection_container_left_animate', '');
+                    animated($('.advantage_container_right'), 'twoSection_container_right_animate', '');
+                }, 850);
+                break;
+            case 3:
+                animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
+                animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+                setTimeout(function () {
+                    animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
+                    animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                }, 850);
+                animated($('.advantage_container_left'), '', 'twoSection_container_left_animate');
+                animated($('.advantage_container_right'), '', 'twoSection_container_right_animate');
+                setTimeout(function () {
+                    animated($('.advantage_container_left'), 'twoSection_container_left_animate', '');
+                    animated($('.advantage_container_right'), 'twoSection_container_right_animate', '');
+                }, 850);
+                break;
+            case 4:
+                animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
+                animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+                setTimeout(function () {
+                    animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
+                    animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                }, 850);
+                break;
+            case 5:
+                animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
+                animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+                setTimeout(function () {
+                    animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
+                    animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                }, 850);
+                break;
+        }
+    }
+</script>
+</body>
+</html>
