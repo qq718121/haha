@@ -13,7 +13,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="./css/common.min.css">
     <link rel="stylesheet" href="./css/first_page.min.css">
-    <link rel="stylesheet" href="./css/index.min.css">
+    <!--<link rel="stylesheet" href="./css/index.min.css">-->
     <!-- libs-css -->
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/examples.min.css"/>
@@ -72,6 +72,21 @@
 <!--<script src=http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js></script>-->
 <!--<![endif]&ndash;&gt;-->
 <script>
+    var fun = function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                //这里是假设在640px宽度设计稿的情况下，1rem = 20px；
+                //可以根据实际需要修改
+                docEl.style.fontSize = 10 * (clientWidth / 1200) + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    };
+    fun(document, window);
     vipspa.start({
         view: '#content',// 页面路由的div
         router: {
@@ -103,9 +118,9 @@
 
     function init(index) {
 
-        position = {x: 219};
+        position = {x: 322};
         target = $('.page_icon');
-        pos = {x: -68 * index + 287 + 'px'};
+        pos = {x: -90 * index + 412 + 'px'};
         tween = new TWEEN.Tween(position)
             .to(pos, 1)
             .easing(TWEEN.Easing.Linear.None)
