@@ -2,6 +2,14 @@
  * Created by lenovo on 2018/1/5.
  */
 $(document).ready(function () {
+    function down_href() {
+        var btn = $('.firstSection_down_btn');
+        var url = 'http://192.168.1.247:3000/#/down';
+        btn.click(function () {
+            $(location).attr('href', url);
+        });
+    }
+
     function input_blur() {
         let span = $('.input_list span');
         let input = $('.input_list input');
@@ -19,38 +27,60 @@ $(document).ready(function () {
 
         function input_yz(index) {
             var val = input[index].value;
-            var eng = '/^1[3|4|5|8][0-9]\d{4,8}$/';
-            if (!val || !(eng.test(val))) {
-                style_init('-15px', '12px', '20px', '#F56364', '280px', '#F56364');
+            var button = $('.post_button');
+            target = span[index];
+            i_target = i[index];
+            button.css('background', '#0080FF');
+            if (index == 3) {
+                var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
+                if (!val || !(eng.test(val)) || val.length < 11) {
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '2.8rem', '#F56364');
+                } else {
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#0080FF', '2.8rem', '#0080FF');
+                }
             } else {
-                style_init('-15px', '12px', '20px', '#0080FF', '280px', '#0080FF');
+                style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '2.8rem', '#0080FF');
             }
+        }
+
+        function focus_yz(e, index) {
+            target = span[index];
+            i_target = i[index];
+            var top = '-0.15rem';
+            var fontSize = '0.12rem';
+            var lineHeight = '0.2rem';
+            var color = '#0080FF';
+            var width = '2.8rem';
+            var background = '#0080FF';
+            style_init(top, fontSize, lineHeight, color, width, background);
         }
 
         function blur_yz(index) {
             var val = input[index].value;
-            if (!val || !(/^1[3|4|5|8][0-9]\d{4,8}$/.test(val))) {
-                style_init('0px', '16px', '50px', '#F56364', '280px', '#F56364');
+            target = span[index];
+            i_target = i[index];
+            if (index == 3) {
+                var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
+                if (!(eng.test(val)) || val.length < 11) {
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '0rem', '#F56364');
+                } else {
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#0080FF', '0rem', '#0080FF');
+                }
+            } else if (!val || val == '') {
+                style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '0rem', '#0080FF');
             } else {
-                style_init('-15px', '12px', '20px', '#0080FF', '280px', '#0080FF');
+                style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '0rem', '#0080FF');
             }
         }
 
         $.each(span, function (index, value) {
             $(this).click(function () {
-                target = span[index];
-                i_target = i[index];
+
+                input[index].addEventListener('focus', function (e) {
+                    focus_yz(e, index);
+                });
                 input[index].addEventListener('blur', function () {
                     blur_yz(index);
-                });
-                input[index].addEventListener('focus', function () {
-                    var top = '-15px';
-                    var fontSize = '12px';
-                    var lineHeight = '20px';
-                    var color = '#0080FF';
-                    var width = '280px';
-                    var background = '#0080FF';
-                    style_init(top, fontSize, lineHeight, color, width, background);
                 });
                 input[index].addEventListener('input', function () {
                     input_yz(index);
@@ -64,7 +94,6 @@ $(document).ready(function () {
         });
     }
 
-    input_blur();
 //初始化整屏滑动
     if ($('html').hasClass('fp-enabled')) {
         $.fn.fullpage.destroy('all');
@@ -90,8 +119,15 @@ $(document).ready(function () {
             removeClass(nextIndex);
         }
     });
+    $('#section4').addClass('section_padding');
+    $('#fullpage').css('display', 'block');
+    down_href();
     removeClass(1);
     $('#fp-nav').addClass('right_change_white');
-    nav_effect();
-
+    nav_init(ul[0], ul, 1);
+    input_blur();
+    $('.post_button').click(function (e) {
+        alert('瞎点什么，点坏了你赔啊 O(∩_∩)O');
+        return false;
+    });
 });
