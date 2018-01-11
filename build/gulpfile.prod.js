@@ -122,6 +122,6 @@ function prod() {
             // .pipe(rev())
             .pipe(gulp.dest(Config.img.dist));
     });
-    gulp.task('build', ['html', 'css', 'sass', 'assets', 'images', 'js-concat', 'js']);
+    gulp.task('build', ['html', 'css', 'sass', 'assets', 'images', 'js', 'js-concat']);
 }
 module.exports = prod;

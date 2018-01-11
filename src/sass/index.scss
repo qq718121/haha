@@ -1,5 +1,17 @@
-//媒体查询apid
-@media screen and (max-width: 992px) {
+//@media screen and (min-width: 1200px) {
+//
+//}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+}
+
+//iphone
+@media screen and (max-width: 768px) {
   .firstSection_down_text, .twoSection_down_text {
     position: relative !important;
     top: 0;
@@ -16,19 +28,6 @@
   .advantage_container, .twoSection_container {
     height: 100%;
   }
-}
-
-//媒体查询 ipad
-@media screen and (min-width: 1200px) {
-
-  //.container {
-  //  max-width: 1000px !important;
-  //}
-}
-
-//iphone
-@media screen and (max-width: 992px) {
-
   .page_icon {
     display: none;
     width: 68px;
@@ -577,4 +576,6 @@
     width: 100%;
   }
 }
+
+
 
