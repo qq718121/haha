@@ -2,6 +2,8 @@
  * Created by lenovo on 2018/1/5.
  */
 $(document).ready(function () {
+    var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
+
     function down_href() {
         var btn = $('.firstSection_down_btn');
         var url = 'http://192.168.1.247:3000/#/down';
@@ -32,7 +34,6 @@ $(document).ready(function () {
             i_target = i[index];
             button.css('background', '#0080FF');
             if (index == 3) {
-                var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
                 if (!val || !(eng.test(val)) || val.length < 11) {
                     style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '2.8rem', '#F56364');
                 } else {
@@ -60,7 +61,6 @@ $(document).ready(function () {
             target = span[index];
             i_target = i[index];
             if (index == 3) {
-                var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
                 if (!(eng.test(val)) || val.length < 11) {
                     style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '0rem', '#F56364');
                 } else {
@@ -73,9 +73,27 @@ $(document).ready(function () {
             }
         }
 
+        function submit() {
+            var is_ = true;
+            for (var i = 0, len = input.length; i < len; i++) {
+                var val = input[i].value;
+                if (!val) {
+                    is_ = false;
+                    return;
+                }
+                if (i == 3) {
+                    if (!val || !(eng.test(val))) {
+                        is_ = false;
+                    }
+                }
+            }
+            if (is_ == true) {
+                $('#myForm').submit();
+            }
+        }
+
         $.each(span, function (index, value) {
             $(this).click(function () {
-
                 input[index].addEventListener('focus', function (e) {
                     focus_yz(e, index);
                 });
@@ -91,6 +109,11 @@ $(document).ready(function () {
                     input[index].focus();
                 }
             });
+        });
+
+        $('.post_button').click(function (e) {
+            e.preventDefault();
+            submit();
         });
     }
 
@@ -126,8 +149,5 @@ $(document).ready(function () {
     $('#fp-nav').addClass('right_change_white');
     nav_init(ul[0], ul, 1);
     input_blur();
-    $('.post_button').click(function (e) {
-        alert('瞎点什么，点坏了你赔啊 O(∩_∩)O');
-        return false;
-    });
+
 });

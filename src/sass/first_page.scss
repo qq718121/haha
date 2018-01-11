@@ -1,7 +1,6 @@
 
 .container {
-  max-width: 1200px !important;
-  width: 100% !important;
+  width: 100%;
   position: relative;
   height: 100%;
   margin: auto;
@@ -127,7 +126,6 @@ header {
 }
 
 .nav_continer {
-  max-width: 1200px;
   width: 100%;
   margin: auto;
   position: relative;
@@ -142,10 +140,11 @@ header {
 }
 
 #nav_avtive {
-  width: 36%;
+  width: 50%;
   text-align: center;
   margin-top: 12.5px !important;
   position: relative;
+  float: right;
 }
 
 #nav_avtive li {
@@ -183,7 +182,6 @@ header {
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border: none !important;
-
 }
 
 .navbar-default {
@@ -423,6 +421,7 @@ header {
   bottom: -1px;
   left: 0;
   opacity: 1;
+  border-radius: 8px;
 }
 
 .twoSection_container_right, .advantage_container_right {
@@ -437,6 +436,7 @@ header {
   top: 0;
   right: 0;
   opacity: 1;
+  border-radius: 8px;
 }
 
 .twoSection_container_left_animate {
@@ -581,6 +581,10 @@ header {
   flex-flow: row-reverse;
 }
 
+.ql_twoAnimate, .ql_fourAnimate {
+  margin-bottom: 0;
+}
+
 .twoSection_container_inner span {
   display: inline-block;
   width: 0.98rem;
@@ -588,6 +592,7 @@ header {
   background: #2697FF;
   animation-delay: 0.5s;
   position: relative;
+  margin: 2% auto;
 }
 
 .twoSection_container_inner p {
@@ -647,39 +652,31 @@ header {
   height: 100%;
 }
 
+.threeSection_container_list_img img, .threeSection_container_list_img_two img, .threeSection_container_list_img_three img, .threeSection_container_list_img_four img {
+  width: 100%;
+}
+
 .threeSection_container_list_img {
   width: 82.3529%;
   height: 61.4035%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_liaojiezhengtigongchengjindu@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .threeSection_container_list_img_two {
   width: 82.3529%;
   height: 61.4035%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_sanweiquanjingkeshihuajiankong@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .threeSection_container_list_img_three {
   width: 82.3529%;
   height: 61.4035%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_zhangwoloupanguihualuoshijindu@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .threeSection_container_list_img_four {
   width: 82.3529%;
   height: 61.4035%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_zhangwofangchanquanliuchengzhouqishuju@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
@@ -767,57 +764,43 @@ header {
   margin-top: 0.28rem;
 }
 
+.fourSection_container_list_img img, .fourSection_container_list_img_one img, .fourSection_container_list_img_two img, .fourSection_container_list_img_three img, .fourSection_container_list_img_four img, .fourSection_container_list_img_five img {
+  width: 100%;
+}
+
 .fourSection_container_list_img {
   width: 45.454545%;
   height: 43.47826%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_gongchengzhiliang@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .fourSection_container_list_img_one {
   width: 45.454545%;
   height: 43.47826%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_guihuasheji@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .fourSection_container_list_img_two {
   width: 45.454545%;
   height: 43.47826%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_zhoubianpeitao@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .fourSection_container_list_img_three {
   width: 45.454545%;
   height: 43.47826%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_guihualuoshi@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .fourSection_container_list_img_four {
   width: 45.454545%;
   height: 43.47826%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_jingguanguihua@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .fourSection_container_list_img_five {
   width: 45.454545%;
   height: 43.47826%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/homepage_icon_loupanwuye@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
@@ -942,6 +925,11 @@ header {
   position: relative;
 }
 
+.btn-default:hover {
+  color: #b9c0c8 !important;
+  background: #fff !important;
+}
+
 .fiveSection_container_box input {
   outline: none;
   width: 2.8rem;
@@ -1034,31 +1022,57 @@ footer {
 .phone {
   width: 12.7777%;
   height: 67.5%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/lALPBY0V4tTCH2hRRQ_69_81.png_620x10000q90.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin-top: 5%;
   margin-right: 10%;
+}
+
+.phone img {
+  width: 100%;
 }
 
 .az {
   width: 15.21052%;
   height: 67.5%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/lALPBY0V4tTCH2daSw_75_90.png_620x10000q90.jpg');
-  background-size: 80%;
-  background-repeat: no-repeat;
-  margin-top: 5%;
+  margin-top: 2%;
   margin-right: 6%;
 }
 
+.az img {
+  width: 100%;
+}
+
 .QR_cord {
-  width: 50%;
-  height: 257.142%;
+  width: 60%;
+  //height: 257.142%;
   position: absolute;
-  top: 100%;
+  top: 130%;
   right: 0;
   display: none;
   padding: 5%;
+  z-index: 99;
+  background: #fff;
+  border-radius: 3%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+}
+
+.QR_cord i {
+  font-size: 0;
+  line-height: 0;
+  border-width: 10px;
+  border-color: #fff;
+  border-top-width: 0;
+  border-style: dashed;
+  border-bottom-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
 }
 
 .QR_cord img {
@@ -1112,39 +1126,32 @@ footer {
   width: 100% !important;
 }
 
+.server_container_list_img img, .server_container_list_img_one img, .server_container_list_img_two img, .server_container_list_img_three img {
+  width: 100%;
+  height: auto;
+}
+
 .server_container_list_img {
-  width: 63.636363%;
+  width: 140px;
   height: 140px;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/service_icon_jingzhundaohu@3x.png?imageslim');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .server_container_list_img_one {
   width: 140px;
   height: 140px;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/service_icon_quanfangweijiankong@3x.png?imageslim');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .server_container_list_img_two {
   width: 140px;
   height: 140px;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/service_icon_quanliuchenggenzong@3x.png?imageslim');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
 .server_container_list_img_three {
   width: 140px;
   height: 140px;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/service_icon_gongzhengtouming@3x.png?imageslim');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
 }
 
@@ -1194,30 +1201,26 @@ footer {
   padding-top: 10.7751%;
 }
 
+.dimensionality_container_list_img img, .dimensionality_container_list_img_two img, .dimensionality_container_list_img_three img {
+  width: 100%;
+  height: auto;
+}
+
 .dimensionality_container_list_img {
   width: 56.68285%;
   height: 48.08966%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/service_icon_huneibufen@3x.png?imageslim');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: 0.13rem auto;
 }
 
 .dimensionality_container_list_img_two {
   width: 56.68285%;
   height: 48.08966%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/service_icon_loudongbufen@3x.png?imageslim');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: 0.13rem auto;
 }
 
 .dimensionality_container_list_img_three {
   width: 56.68285%;
   height: 48.08966%;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/service_icon_yuanqubufen@3x.png?imageslim');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: 0.13rem auto;
 }
 
@@ -1305,11 +1308,16 @@ footer {
 .wx_img {
   width: 120px;
   height: 120px;
-  background-image: url('http://oxrgdeqd8.bkt.clouddn.com/about_pic@3x.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
   position: relative;
+}
+
+.wx_img img {
+  width: 100%;
+}
+
+.wx {
+  margin-top: 8%;
 }
 
 .ql_sixAnimate {
@@ -1350,7 +1358,7 @@ footer {
 .serve_container_lists {
   max-width: 1200px;
   width: 100%;
-  height: 61.06032%;
+  height: auto;
   margin: 8.58% auto !important;
 }
 
@@ -1389,6 +1397,15 @@ footer {
 
 .serveSection_list {
   height: 100%;
+}
+
+.modal_ {
+  width: 100%;
+  height: 100%;
+  background: red;
+  position: fixed;
+  z-index: 999;
+  top: -100%;
 }
 
 

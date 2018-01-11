@@ -151,7 +151,7 @@ var class_animated = function (one, two, three, four, five, six, seven, eight) {
                 //     animated(e, 'fadeInUpBig', '');
                 // }, 2000);
             })(j);
-            num += 500;
+            num += 300;
         }
         continue;
     }
@@ -167,7 +167,7 @@ function removeClass(index, nextIndex) {
                 class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six');
                 break;
             case 3:
-                class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven');
+                class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight');
                 break;
             case 4:
                 class_animated('zy_one', 'zy_two', 'zy_three', 'zy_four', 'zy_five', 'zy_six', 'zy_seven', 'zy_eight');
