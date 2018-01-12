@@ -99,14 +99,16 @@ function prod() {
             .pipe(babel({
                 presets: [es2015]
             }))
-            .pipe(jshint('.jshintrc'))
-            .pipe(jshint.reporter('default'))
+            // .pipe(jshint('.jshintrc'))
+            // .pipe(jshint.reporter('default'))
+            .pipe(uglify())
             .pipe(rename({
                 suffix: '.min'
             }))
-            .pipe(uglify())
             // .pipe(rev())
             .pipe(gulp.dest(Config.js.dist));
+
+        // gp.src(['1.js', '2.js']).pipe(concat('main.js')).pipe(uglify()).pipe(gp.dest('./dest/js'));
     });
     /**
      * 图片处理

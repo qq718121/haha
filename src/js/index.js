@@ -11,6 +11,8 @@
                 docEl.style.fontSize = '100px';
             } else if (clientWidth < 768) {
                 docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+            } else if (clientWidth < 992) {
+                docEl.style.fontSize = 100 * (clientWidth / 992) + 'px';
             } else {
                 docEl.style.fontSize = 100 * (clientWidth / 1440) + 'px';
             }
@@ -229,3 +231,4 @@ function icon_animate(index) {
             break;
     }
 }
+

@@ -64,7 +64,7 @@ $(document).ready(function () {
                 if (!(eng.test(val)) || val.length < 11) {
                     style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '0rem', '#F56364');
                 } else {
-                    style_init('-0.15rem', '0.12rem', '0.2rem', '#0080FF', '0rem', '#0080FF');
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '0rem', '#0080FF');
                 }
             } else if (!val || val == '') {
                 style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '0rem', '#0080FF');
@@ -72,6 +72,13 @@ $(document).ready(function () {
                 style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '0rem', '#0080FF');
             }
         }
+
+        $('.modal_inner button').click(function () {
+            input.each(function (i, val) {
+                val.value = '';
+            });
+            $('.modal_').toggle(100);
+        });
 
         function submit() {
             var is_ = true;
@@ -88,7 +95,8 @@ $(document).ready(function () {
                 }
             }
             if (is_ == true) {
-                $('#myForm').submit();
+                // $('#myForm').submit();
+                $('.modal_').toggle(100);
             }
         }
 
@@ -112,8 +120,8 @@ $(document).ready(function () {
         });
 
         $('.post_button').click(function (e) {
-            e.preventDefault();
             submit();
+            return false;
         });
     }
 
