@@ -33,7 +33,7 @@ $(document).ready(function () {
         easing: 'easeInExpo',//定义页面section滚动的动画方式，若修改此项需引入jquery.easing插件
         'scrollingSpeed': '2000',
         'keyboardScrolling': true,
-        'touchSensitivity': 30,//在移动设备中滑动页面的敏感性，默认为5最高100，越大越难滑动
+        'touchSensitivity': 0,//在移动设备中滑动页面的敏感性，默认为5最高100，越大越难滑动
         'resize ': true,
         'afterLoad': function (anchorLink, index) {
             icon_animate(index);

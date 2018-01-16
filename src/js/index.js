@@ -137,7 +137,7 @@ function animated($, re, add) {
 var class_animated = function (one, two, three, four, five, six, seven, eight) {
     var len = arguments.length;
     var arr = [];
-    var num = 1300;
+    var num = 1000;
     for (var i = 0; i < len; i++) {
         if (arguments[i]) {
             var defualt = `${arguments[i]}Animate`;
@@ -231,4 +231,10 @@ function icon_animate(index) {
             break;
     }
 }
+
+$('body').click(function () {
+    if ($('.navbar-collapse').hasClass('in')) {
+        $('.navbar-collapse').removeClass('in').attr('aria-expanded', false);
+    }
+});
 

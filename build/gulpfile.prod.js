@@ -76,7 +76,7 @@ function prod() {
      */
     gulp.task('js', function () {
         return gulp.src(Config.js.src)
-            .pipe(sourcemaps.init()) // 执行sourcemaps
+            // .pipe(sourcemaps.init()) // 执行sourcemaps
             .pipe(babel({
                 presets: [es2015]
             }))
@@ -87,7 +87,7 @@ function prod() {
             }))
             .pipe(uglify())
             // .pipe(rev())
-            .pipe(sourcemaps.write('maps')) // 地图输出路径（存放位置)
+            // .pipe(sourcemaps.write('maps')) // 地图输出路径（存放位置)
             .pipe(gulp.dest(Config.js.dist));
     });
     /**

@@ -35,7 +35,7 @@ $(document).ready(function () {
             button.css('background', '#0080FF');
             if (index == 3) {
                 if (!val || !(eng.test(val)) || val.length < 11) {
-                    style_init('-0.15rem', '0.12rem', '0.2rem', '#F56364', '2.8rem', '#F56364');
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '2.8rem', '#F56364');
                 } else {
                     style_init('-0.15rem', '0.12rem', '0.2rem', '#0080FF', '2.8rem', '#0080FF');
                 }
@@ -81,26 +81,15 @@ $(document).ready(function () {
         });
 
         function submit() {
-            var is_ = true;
-            for (var i = 0, len = input.length; i < len; i++) {
-                var val = input[i].value;
-                if (!val) {
-                    is_ = false;
-                    return;
-                }
-                if (i == 3) {
-                    if (!val || !(eng.test(val))) {
-                        is_ = false;
-                    }
-                }
-            }
-            if (is_ == true) {
-                // $('#myForm').submit();
+
+            $('#myForm').attr('action', 'http://192.168.1.232:8088/appUserScoreController/appointBuildInfo');
+            $('#myForm').submit(function () {
                 $('.modal_').toggle(100);
-            }
+                return false;
+            });
         }
 
-        $.each(span, function (index, value) {
+        $.each(span, function (index) {
             $(this).click(function () {
                 input[index].addEventListener('focus', function (e) {
                     focus_yz(e, index);
@@ -119,9 +108,26 @@ $(document).ready(function () {
             });
         });
 
-        $('.post_button').click(function (e) {
-            submit();
-            return false;
+        $('.post_button').click(function () {
+            var is_ = true;
+            for (var i = 0, len = input.length; i < len; i++) {
+                var val = input[i].value;
+                if (!val) {
+                    is_ = false;
+                    return;
+                }
+                if (i == 3) {
+                    if (!val || !(eng.test(val))) {
+                        is_ = false;
+                    }
+                }
+            }
+            if (is_ == true) {
+                submit();
+            } else {
+                return false;
+            }
+
         });
     }
 
@@ -140,7 +146,7 @@ $(document).ready(function () {
         easing: 'easeInExpo',//定义页面section滚动的动画方式，若修改此项需引入jquery.easing插件
         'scrollingSpeed': '2000',
         'keyboardScrolling': true,
-        'touchSensitivity': 30,//在移动设备中滑动页面的敏感性，默认为5最高100，越大越难滑动
+        'touchSensitivity': 0,//在移动设备中滑动页面的敏感性，默认为5最高100，越大越难滑动
         'resize ': true,
         'afterLoad': function (anchorLink, index) {
             icon_animate(index);
