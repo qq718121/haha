@@ -3,6 +3,7 @@
  */
 $(document).ready(function () {
     var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
+    var url = 'http://47.95.233.255:8081/maijiabangbackstate-1.0-SNAPSHOT';
 
     function down_href() {
         var btn = $('.firstSection_down_btn');
@@ -76,13 +77,14 @@ $(document).ready(function () {
             input.each(function (i, val) {
                 val.value = '';
             });
-            $('.modal_').toggle(100);
+            $('.modal_').hide(100);
         });
 
         function submit() {
 
-            $('#myForm').attr('action', 'http://192.168.1.232:8088/appUserScoreController/appointBuildInfo');
-            $('#myForm').submit(function () {
+            $('#myForm').attr('action', url + '/appUserScoreController/appointBuildInfo');
+            $('#myForm').submit(function (data) {
+                console.log(data);
                 $('.modal_').toggle(100);
                 return false;
             });
@@ -135,6 +137,7 @@ $(document).ready(function () {
         $.fn.fullpage.destroy('all');
     }
     $('#fullpage').fullpage({
+
         'verticalCentered': false,
         'css3': false,
         'sectionsColor': ['#fff', '#F6F7F8', '#fff', '#fff', '#F6F7F8'],
@@ -155,6 +158,7 @@ $(document).ready(function () {
             removeClass(nextIndex);
         }
     });
+
     $('#section4').addClass('section_padding');
     $('#fullpage').css('display', 'block');
     down_href();
@@ -162,4 +166,5 @@ $(document).ready(function () {
     $('#fp-nav').addClass('right_change_white');
     nav_init(ul[0], ul, 1);
     input_blur();
+
 });

@@ -188,6 +188,7 @@ header {
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border: none !important;
+  border-color: #009FFD !important;
 }
 
 .navbar-default {
@@ -264,14 +265,14 @@ header {
 }
 
 //first_section_css
-.firstSection_img {
+.firstSection_img, .serve_firstSection_img {
   //max-width: 430px;
   width: 50% !important;
   height: 100%;
   margin-right: 1.5%;
 }
 
-.firstSection_img img {
+.firstSection_img img, .serve_firstSection_img img {
   width: 100%;
   height: auto;
   position: relative;
@@ -289,7 +290,7 @@ header {
 }
 
 .firstSection_down_text {
-  height: 47.5%;
+  height: auto;
   text-align: left;
   position: absolute !important;
   top: 50%;
@@ -622,7 +623,7 @@ header {
   margin: 10px auto 20px;
 }
 
-.twoSection_container_inner p {
+.twoSection_container_inner p, .depthometer {
   font-family: MicrosoftYaHei;
   font-size: 0.14rem;
   color: rgba(66, 70, 77, 0.7);
@@ -877,7 +878,18 @@ header {
   color: rgba(66, 70, 77, 1);
   letter-spacing: 8px;
   line-height: 0.36rem;
-  margin: 2.6% auto;
+  margin: 0 auto 20px;
+}
+
+#myForm {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
 }
 
 .fiveSection_container_box h2 {
@@ -885,7 +897,7 @@ header {
   font-size: 0.16rem;
   color: rgba(66, 70, 77, 0.7);
   letter-spacing: 0.04rem;
-  margin: 1% auto 0;
+  margin: 0 auto 0;
 }
 
 .input_list {
@@ -1453,6 +1465,19 @@ footer {
 
 .section_six_continer_slider {
   width: 100%;
+  position: absolute;
+  padding-top: 4%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.section_si_continer_slider {
+  width: 100%;
   height: 100%;
   position: absolute;
   padding-top: 4%;
@@ -1488,6 +1513,7 @@ footer {
 
 .serveSection_list {
   height: 100%;
+  margin-top: 0.1rem;
 }
 
 .modal_ {

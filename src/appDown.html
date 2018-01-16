@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>鹰眼鉴房app下载</title>
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <script src="./js/setFontsize.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        setFontsize()
+        window.onresize = function () {
+            setFontsize()
+        }
+    </script>
+    <style>
+        html body {
+            max-width: 750px;
+            margin: 0 auto;
+            height: 100%
+        }
+
+        .appDown {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: url('./images/pic_bg@2x.png') no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        .appDown .conImg {
+            width: 2.45rem;
+            margin-left: .65rem;
+            margin-top: 1.8rem
+        }
+
+        .appDown .downImg {
+            width: 2.95rem;
+            position: absolute;
+            left: .4rem;
+            bottom: .4rem
+        }
+
+        .appDown .blackWap {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, .6);
+            z-index: 3
+        }
+
+        .appDown .blackWap img {
+            width: 2.78rem;
+            margin-left: .75rem;
+            margin-top: .23rem;
+        }
+    </style>
+</head>
+<body>
+<div class="appDown">
+    <img class="conImg" src="./images/pic_zhuti@3x.png" alt="">
+    <img class="downImg" src="./images/btn_xiazai@2x.png" alt="">
+    <div class="blackWap">
+        <img src="./images/pic_mengban@2x.png" alt="">
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".downImg").click(function () {
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+                window.location.href = 'http://owvcynyz1.bkt.clouddn.com/homehawkeye1.1.1.apk'
+            } else {
+                window.location.href = 'https://itunes.apple.com/cn/app/%E9%B9%B0%E7%9C%BC%E9%89%B4%E6%88%BF/id1298408736?mt=8'
+            }
+        })
+        //判断是否微信登陆
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if (isWeiXin()) {
+            $(".appDown .blackWap").show()
+        } else {
+            $(".appDown .blackWap").hide()
+            $(".appDown .conImg").css({'marginTop': '1rem'})
+        }
+    })
+</script>
+</body>
+</html>
