@@ -62,6 +62,7 @@ function dev() {
      */
     gulp.task('sass:dev', function () {
         return gulp.src(Config.sass.src)
+            .pipe(concat(Config.sass.build_name))
             .pipe(sass())
             .pipe(autoprefixer({
                 browsers: ['last 2 versions', 'Android >= 4.0'],

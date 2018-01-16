@@ -11,7 +11,7 @@ $(document).ready(function () {
     nav_init(ul[1], ul, 2);
     function down_checkout() {
         az.click(function () {
-            $(".QR_cord").fadeToggle(1000);
+            $(".QR_cord").fadeToggle(700);
         });
         ip.click(function () {
             $(location).attr('href', url);

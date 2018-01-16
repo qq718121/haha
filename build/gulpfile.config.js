@@ -24,11 +24,12 @@ let Config = {
     sass: {
         dir: SRC_DIR + 'sass',
         src: SRC_DIR + 'sass/**/*.scss',         // SASS目录：./src/sass/
-        dist: DIST_DIR + 'css'                   // SASS文件生成CSS后存放的目录：./dist/css
+        dist: DIST_DIR + 'css',                  // SASS文件生成CSS后存放的目录：./dist/css
+        build_name: 'build.css'
     },
     js: {
         dir: SRC_DIR + 'js',
-        src: SRC_DIR + 'js/**/*.js',             // JS目录：./src/js/
+        src: SRC_DIR + 'js/**/!(*.min).js',      // JS目录：./src/js/
         dist: DIST_DIR + 'js',                   // JS文件build后存放的目录：./dist/js
         build_name: 'build.js'                   // 合并后的js的文件名
     },

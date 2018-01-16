@@ -57,6 +57,7 @@ function prod() {
      */
     gulp.task('sass', function () {
         return gulp.src(Config.sass.src)
+            .pipe(concat(Config.sass.build_name))
             .pipe(sass())
             .pipe(autoprefixer({
                 browsers: ['last 2 versions', 'Android >= 4.0'],
@@ -74,9 +75,10 @@ function prod() {
     /**
      * js处理
      */
+
     gulp.task('js', function () {
-        return gulp.src(Config.js.src)
-            // .pipe(sourcemaps.init()) // 执行sourcemaps
+        return gulp.src([Config.js.src])
+        // .pipe(sourcemaps.init()) // 执行sourcemaps
             .pipe(babel({
                 presets: [es2015]
             }))
@@ -85,7 +87,7 @@ function prod() {
             .pipe(rename({
                 suffix: '.min'
             }))
-            .pipe(uglify())
+            .pipe(uglify({mangle: {except: ['require', 'exports', 'module', '$']}}))
             // .pipe(rev())
             // .pipe(sourcemaps.write('maps')) // 地图输出路径（存放位置)
             .pipe(gulp.dest(Config.js.dist));

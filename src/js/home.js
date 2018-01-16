@@ -6,9 +6,8 @@ $(document).ready(function () {
 
     function down_href() {
         var btn = $('.firstSection_down_btn');
-        var url = 'http://192.168.1.247:3000/#/down';
         btn.click(function () {
-            $(location).attr('href', url);
+            $(".home_QR_cord").fadeToggle(700);
         });
     }
 
@@ -163,5 +162,4 @@ $(document).ready(function () {
     $('#fp-nav').addClass('right_change_white');
     nav_init(ul[0], ul, 1);
     input_blur();
-
 });

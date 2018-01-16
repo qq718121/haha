@@ -1126,7 +1126,26 @@ footer {
   -o-transform: translate(-50%, 0);
 }
 
-.QR_cord i {
+.home_QR_cord {
+  width: 120px;
+  //height: 257.142%;
+  position: absolute;
+  top: 117%;
+  right: 0;
+  display: none;
+  padding: 5px;
+  z-index: 99;
+  background: #fff;
+  border-radius: 3%;
+  left: 50%;
+  transform: translate(-164%, 0);
+  -webkit-transform: translate(-164%, 0);
+  -moz-transform: translate(-164%, 0);
+  -ms-transform: translate(-164%, 0);
+  -o-transform: translate(-164%, 0);
+}
+
+.QR_cord i, .home_QR_cord i {
   font-size: 0;
   line-height: 0;
   border-width: 10px;
@@ -1137,12 +1156,12 @@ footer {
   border-left-color: transparent;
   border-right-color: transparent;
   position: absolute;
-  top: -10px;
+  top: -8px;
   left: 50%;
   margin-left: -10px;
 }
 
-.QR_cord img {
+.QR_cord img, .home_QR_cord img {
   width: 100%;
   height: auto;
 }

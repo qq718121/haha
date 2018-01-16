@@ -26,6 +26,13 @@
 // 对浏览器的UserAgent进行正则匹配，不含有微信独有标识的则为其他浏览器
 
 setTimeout(showPage, 1);
+//点击外层收起导航
+$('body').click(function () {
+    console.log('q');
+    $('#example-navbar-collapse').collapse('hide');
+});
+
+
 function showPage() {
     var bdy = document.body;
     bdy.style.visibility = "visible";
@@ -34,12 +41,13 @@ function showPage() {
 // 是加载的没有样式的,过一秒从上往下渲染,可以给body加一个计时器,1毫秒后
 // 显示不影响效果
 
+//span初始化
 vipspa.start({
     view: '#content',// 页面路由的div
     router: {
         '/home': {
-            templateUrl: 'components/home.html',
-            controller: 'js/home.min.js'
+            templateUrl: 'components/home.html',//view渲染的html
+            controller: 'js/home.min.js' //当前html执行的js文件
         },
         '/down': {
             templateUrl: 'components/down.html',
@@ -57,6 +65,7 @@ vipspa.start({
     },
     errorTemplateId: '#error'//错误显示页面
 });
+//获取导航icon的移动元素
 var div = $('.page_icon');
 var position;
 var target;
@@ -64,6 +73,7 @@ var tween, tweenBack;
 var pos;
 var ul = $('#nav_avtive li');
 
+//利用tween.js实现导航icon的点击移动特效
 function init(index, num) {
     position = {x: num};
     target = $('.page_icon');
@@ -74,15 +84,16 @@ function init(index, num) {
         .onUpdate(update);
     tween.start();
 }
-
+//tween.js任务的实时更新函数
 function animate(time) {
     requestAnimationFrame(animate);
     TWEEN.update(time);
 }
-
+//tween.js定义的动画任务让指定的dom来执行
 function update() {
     target[0].style.left = position.x + '%';
 }
+//初始化导航active特效
 function nav_init(n, list, index) {
     nav_scrool(1);
     init(index, 15);
@@ -103,7 +114,7 @@ function nav_init(n, list, index) {
 //     // });
 // }
 
-//导航栏切换
+//如果当前section是第一个view，导航所展示的效果
 function nav_scrool(index) {
     if (index == 1) {
 
@@ -134,6 +145,7 @@ function animated($, re, add) {
     $.removeClass(re).addClass(add);
 }
 
+//封装一个元素class动画，指定第几个执行
 var class_animated = function (one, two, three, four, five, six, seven, eight) {
     var len = arguments.length;
     var arr = [];
@@ -158,7 +170,7 @@ var class_animated = function (one, two, three, four, five, six, seven, eight) {
         continue;
     }
 };
-
+//根据当前的section执行相应的动画
 function removeClass(index, nextIndex) {
     if (index !== nextIndex) {
         switch (index) {
@@ -180,7 +192,7 @@ function removeClass(index, nextIndex) {
         }
     }
 }
-
+//卡片左右角的icon动画
 function icon_animate(index) {
     switch (index) {
         case 1:
@@ -231,10 +243,4 @@ function icon_animate(index) {
             break;
     }
 }
-
-$('body').click(function () {
-    if ($('.navbar-collapse').hasClass('in')) {
-        $('.navbar-collapse').removeClass('in').attr('aria-expanded', false);
-    }
-});
 
