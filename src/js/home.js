@@ -4,11 +4,12 @@
 $(document).ready(function () {
     var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
     var url = 'http://47.95.233.255:8081/maijiabangbackstate-1.0-SNAPSHOT';
+    var is_ = true;
 
     function down_href() {
         var btn = $('.firstSection_down_btn');
         btn.click(function () {
-            $(".home_QR_cord").fadeToggle(700);
+            $(location).attr('href', '../appDown.hyml');
         });
     }
 
@@ -32,15 +33,15 @@ $(document).ready(function () {
             var button = $('.post_button');
             target = span[index];
             i_target = i[index];
-            button.css('background', '#0080FF');
+            button.css('background', '#0080FF').css('color', '#fff');
             if (index == 3) {
                 if (!val || !(eng.test(val)) || val.length < 11) {
-                    style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '2.8rem', '#F56364');
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '100%', '#F56364');
                 } else {
-                    style_init('-0.15rem', '0.12rem', '0.2rem', '#0080FF', '2.8rem', '#0080FF');
+                    style_init('-0.15rem', '0.12rem', '0.2rem', '#0080FF', '100%', '#0080FF');
                 }
             } else {
-                style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '2.8rem', '#0080FF');
+                style_init('-0.15rem', '0.12rem', '0.2rem', '#b9c0c8', '100%', '#0080FF');
             }
         }
 
@@ -51,7 +52,7 @@ $(document).ready(function () {
             var fontSize = '0.12rem';
             var lineHeight = '0.2rem';
             var color = '#0080FF';
-            var width = '2.8rem';
+            var width = '100%';
             var background = '#0080FF';
             style_init(top, fontSize, lineHeight, color, width, background);
         }
@@ -77,18 +78,10 @@ $(document).ready(function () {
             input.each(function (i, val) {
                 val.value = '';
             });
+            $('#myForm').attr('action', '');
             $('.modal_').hide(100);
+            is_ = true;
         });
-
-        function submit() {
-
-            $('#myForm').attr('action', url + '/appUserScoreController/appointBuildInfo');
-            $('#myForm').submit(function (data) {
-                console.log(data);
-                $('.modal_').toggle(100);
-                return false;
-            });
-        }
 
         $.each(span, function (index) {
             $(this).click(function () {
@@ -110,26 +103,31 @@ $(document).ready(function () {
         });
 
         $('.post_button').click(function () {
-            var is_ = true;
-            for (var i = 0, len = input.length; i < len; i++) {
-                var val = input[i].value;
-                if (!val) {
-                    is_ = false;
-                    return;
-                }
-                if (i == 3) {
-                    if (!val || !(eng.test(val))) {
+                is_ = true;
+                for (var i = 0, len = input.length; i < len; i++) {
+                    var val = input[i].value;
+                    console.log(val);
+                    if (!val) {
                         is_ = false;
+                        return;
+                    }
+                    if (i == 3) {
+                        if (!val || !(eng.test(val))) {
+                            is_ = false;
+                            return;
+                        }
                     }
                 }
+                console.log(is_);
+                if (is_ == true) {
+                    $('#myForm').attr('action', url + '/appUserScoreController/appointBuildInfo');
+                    $('#myForm').submit();
+                    $('.modal_').toggle(100);
+                } else {
+                    return false;
+                }
             }
-            if (is_ == true) {
-                submit();
-            } else {
-                return false;
-            }
-
-        });
+        );
     }
 
 //初始化整屏滑动
@@ -137,7 +135,6 @@ $(document).ready(function () {
         $.fn.fullpage.destroy('all');
     }
     $('#fullpage').fullpage({
-
         'verticalCentered': false,
         'css3': false,
         'sectionsColor': ['#fff', '#F6F7F8', '#fff', '#fff', '#F6F7F8'],
@@ -158,13 +155,13 @@ $(document).ready(function () {
             removeClass(nextIndex);
         }
     });
-
+    a = 0;
+    removeClass(1);
     $('#section4').addClass('section_padding');
     $('#fullpage').css('display', 'block');
     down_href();
-    removeClass(1);
     $('#fp-nav').addClass('right_change_white');
     nav_init(ul[0], ul, 1);
     input_blur();
-
-});
+})
+;

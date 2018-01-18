@@ -43,6 +43,7 @@ $(document).ready(function () {
             removeClass(nextIndex);
         }
     });
+     a = 1;
     $('#section3').addClass('section_padding');
     $('#fullpage').css('display', 'block');
     removeClass(1);

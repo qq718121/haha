@@ -35,6 +35,7 @@ $(document).ready(function () {
     });
     $('#section4').addClass('section_padding');
     $('#fullpage').css('display', 'block');
+    a = 2;
     removeClass(1);
     $('#fp-nav').addClass('right_change_white');
     nav_init(ul[2], ul, 3);

@@ -1,6 +1,7 @@
 /**
  * Created by lenovo on 2018/1/9.
  */
+rotate();
 (function (doc, win) {
     var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
@@ -108,6 +109,7 @@ var position;
 var target;
 var tween, tweenBack;
 var pos;
+var a;
 var ul = $('#nav_avtive li');
 
 //利用tween.js实现导航icon的点击移动特效
@@ -183,51 +185,80 @@ function animated($, re, add) {
 }
 
 //封装一个元素class动画，指定第几个执行
-var class_animated = function (one, two, three, four, five, six, seven, eight) {
+var class_animated = function (one, two, three, four, five, six, seven, eight, to_, serve_to, num) {
     var len = arguments.length;
     var arr = [];
-    var num = 800;
     for (var i = 0; i < len; i++) {
         if (arguments[i]) {
             var defualt = `${arguments[i]}Animate`;
             arr.push(defualt);
             var j = $(`.${arr[i]}`);
-            (function (e,n) {
+            (function (e, n) {
                 requestAnimationFrame(function () {
                     e.stop(true, true);
-                    e.css('top', '1000px');
-                    e.animate({'top': '0'}, n);
+                    if (serve_to) {
+                        e.css('top', serve_to).css('opacity', '0');
+                    } else {
+                        e.css('top', to_).css('opacity', '0');
+                    }
+                    e.animate({'top': '0', 'opacity': '1'}, n);
                 });
-                // setTimeout(function () {
-                //     animated(e, '', 'fadeInUpBig');
-                // }, num);
-                // setTimeout(function () {
-                //     animated(e, 'fadeInUpBig', '');
-                // }, 2000);
-            })(j,num);
+            })(j, num);
             num += 150;
         }
         continue;
     }
 };
+function navigator_win() {
+    var system = {
+        win: false,
+        mac: false,
+        xll: false
+    };
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    return system;
+//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+}
 //根据当前的section执行相应的动画
-function removeClass(index, nextIndex) {
+
+function removeClass(index, nextIndex, serve_is) {
+    //平台、设备和操作系统
     if (index !== nextIndex) {
         switch (index) {
             case 1:
-                class_animated('lx_one', 'lx_two', 'lx_three');
+                class_animated('lx_one', 'lx_two', 'lx_three', '', '', '', '', '', '900px', '', 800);
                 break;
             case 2:
-                class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six');
+                if (navigator_win().win || navigator_win().mac || navigator_win().xll) {
+                    class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '', 800);
+                } else {
+                    if (a == 2) {
+                        class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '180px', 300);
+                    } else {
+                        class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '', 800);
+                    }
+                }
                 break;
             case 3:
-                class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight');
+                if (navigator_win().win || navigator_win().mac || navigator_win().xll) {
+                    class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '', 800);
+                } else {
+                    if (a == 0) {
+                        class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '200px', 300);
+                    } else {
+                        class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '', 800);
+                    }
+                }
                 break;
             case 4:
-                class_animated('zy_one', 'zy_two', 'zy_three', 'zy_four', 'zy_five', 'zy_six', 'zy_seven', 'zy_eight');
+                class_animated('zy_one', 'zy_two', 'zy_three', 'zy_four', 'zy_five', 'zy_six', 'zy_seven', 'zy_eight', '900px', '', 800);
                 break;
             case 5:
-                class_animated('yy_one', 'yy_two', 'yy_three', 'yy_four', 'yy_five', 'yy_six', 'yy_seven', 'yy_eight');
+                class_animated('yy_one', 'yy_two', 'yy_three', 'yy_four', 'yy_five', 'yy_six', 'yy_seven', 'yy_eight', '900px', '', 800);
                 break;
         }
     }

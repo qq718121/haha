@@ -3,7 +3,10 @@ body {
     text-align: center;
     margin: 0 auto;
     padding: 0;
-    background: #FFF;
+    background-image: url(http://oxrgdeqd8.bkt.clouddn.com/lALPBY0V4tLdGnHNCavNEOA_4320_2475.png) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 13px;
     font-size: 62.5%;
     color: #333;
 }
@@ -54,4 +57,9 @@ a:hover {
 
 a:focus {
     outline: none;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    border: 1px solid #fff !important;
 }
