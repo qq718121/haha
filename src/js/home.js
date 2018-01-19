@@ -9,7 +9,7 @@ $(document).ready(function () {
     function down_href() {
         var btn = $('.firstSection_down_btn');
         btn.click(function () {
-            $(location).attr('href', '../appDown.hyml');
+            $(location).attr('href', '../appDown.html');
         });
     }
 
@@ -151,6 +151,7 @@ $(document).ready(function () {
             icon_animate(index);
         },
         'onLeave': function (index, nextIndex, direction) {
+            $('#example-navbar-collapse').collapse('hide');
             nav_scrool(nextIndex);
             removeClass(nextIndex);
         }

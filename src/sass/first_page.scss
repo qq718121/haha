@@ -293,7 +293,7 @@ header {
   position: relative;
 }
 
-.firstSection_down_text {
+.firstSection_down_text, .about_down_text, .serve_down_text {
   height: auto;
   text-align: left;
   position: absolute !important;
@@ -371,7 +371,7 @@ header {
   -o-transform: translate(-50%, -50%);
 }
 
-.firstSection_down_two_p {
+.firstSection_down_two_p, .about_firstSection_down_two_p {
   font-family: PingFangSC-Regular;
   font-size: 0.18rem;
   color: #FFFFFF;
@@ -400,8 +400,8 @@ header {
 }
 
 .firstSection_down_btn {
-  width: 50%;
-  height: 19.6491%;
+  width: 277.5px;
+  height: 50px;
   margin-top: 12%;
   border: none !important;
   font-family: MicrosoftYaHei;

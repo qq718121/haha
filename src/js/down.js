@@ -39,11 +39,12 @@ $(document).ready(function () {
             icon_animate(index);
         },
         'onLeave': function (index, nextIndex, direction) {
+            $('#example-navbar-collapse').collapse('hide');
             nav_scrool(nextIndex);
             removeClass(nextIndex);
         }
     });
-     a = 1;
+    a = 1;
     $('#section3').addClass('section_padding');
     $('#fullpage').css('display', 'block');
     removeClass(1);

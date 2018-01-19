@@ -1,7 +1,42 @@
 /**
  * Created by lenovo on 2018/1/9.
  */
+
+window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
+    alert("错误信息：", errorMessage);
+    alert("出错文件：", scriptURI);
+    alert("出错行号：", lineNumber);
+    alert("出错列号：", columnNumber);
+    alert("错误详情：", errorObj);
+}
 rotate();
+pushState_navHide();
+
+//span初始化
+vipspa.start({
+    view: '#content',// 页面路由的div
+    router: {
+        '/home': {
+            templateUrl: 'components/home.html',//view渲染的html
+            controller: '/js/home.min.js' //当前html执行的js文件
+        },
+        '/down': {
+            templateUrl: 'components/down.html',
+            controller: '/js/down.min.js'
+        },
+        '/serve': {
+            templateUrl: 'components/serve.html',
+            controller: '/js/serve.min.js'
+        },
+        '/about': {
+            templateUrl: 'components/about.html',
+            controller: '/js/about.min.js'
+        },
+        'defaults': '/home'
+    },
+    errorTemplateId: '#error'//错误显示页面
+});
+
 (function (doc, win) {
     var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
@@ -35,10 +70,8 @@ $('body').click(function () {
 //利用requestAnimationFrame对JQ的动画进行相对的优化
 var lastTime = 0;
 var prefixes = 'webkit moz ms o'.split(' '); //各浏览器前缀
-
 var requestAnimationFrame = window.requestAnimationFrame;
 var cancelAnimationFrame = window.cancelAnimationFrame;
-
 var prefix;
 //通过遍历各浏览器前缀，来得到requestAnimationFrame和cancelAnimationFrame在当前浏览器的实现形式
 for (var i = 0; i < prefixes.length; i++) {
@@ -79,30 +112,6 @@ function showPage() {
 // 是加载的没有样式的,过一秒从上往下渲染,可以给body加一个计时器,1毫秒后
 // 显示不影响效果
 
-//span初始化
-vipspa.start({
-    view: '#content',// 页面路由的div
-    router: {
-        '/home': {
-            templateUrl: 'components/home.html',//view渲染的html
-            controller: 'js/home.min.js' //当前html执行的js文件
-        },
-        '/down': {
-            templateUrl: 'components/down.html',
-            controller: 'js/down.min.js'
-        },
-        '/serve': {
-            templateUrl: 'components/serve.html',
-            controller: 'js/serve.min.js'
-        },
-        '/about': {
-            templateUrl: 'components/about.html',
-            controller: 'js/about.min.js'
-        },
-        'defaults': '/home'
-    },
-    errorTemplateId: '#error'//错误显示页面
-});
 //获取导航icon的移动元素
 var div = $('.page_icon');
 var position;
@@ -144,14 +153,6 @@ function nav_init(n, list, index) {
     n.className = 'active';
 }
 // //导航滑动特效
-// function nav_effect() {
-//     // $.each(ul, function (index, value) {
-//     //     $(this).click(function () {
-//     //         let index = $(this).index() + 1;
-//     //         nav_init(this, ul, index);
-//     //     });
-//     // });
-// }
 
 //如果当前section是第一个view，导航所展示的效果
 function nav_scrool(index) {
@@ -201,6 +202,8 @@ var class_animated = function (one, two, three, four, five, six, seven, eight, t
                     } else {
                         e.css('top', to_).css('opacity', '0');
                     }
+                    e.css('display', 'none');
+                    e.css('display', '');
                     e.animate({'top': '0', 'opacity': '1'}, n);
                 });
             })(j, num);
@@ -313,5 +316,18 @@ function icon_animate(index) {
             }, 850);
             break;
     }
+}
+//当页面前进后退时候收起导航下拉
+function pushState_navHide() {
+    var counter = 0;
+    if (window.history && window.history.pushState) {
+        $(window).on('popstate', function () {
+            // window.history.pushState('forward', null, '#');
+            // window.history.forward(1);
+            $('#example-navbar-collapse').collapse('hide');
+        });
+    }
+    // window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+    // window.history.forward(1);
 }
 

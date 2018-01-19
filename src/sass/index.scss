@@ -367,13 +367,13 @@
     -o-transform: translate(0, 0);
   }
   .twoSection_down_text {
-    margin-top: 0.2rem;
+    margin-top: 0;
   }
   .bounce_continer, .down_bounce_continer {
     display: block;
     -webkit-box-pack: center;
     -webkit-box-align: center;
-    //height: 100%;
+    height: 100%;
   }
   .advantage_container, .twoSection_container {
     height: 100%;
@@ -431,7 +431,7 @@
     letter-spacing: 0.04rem;
     line-height: 0.27rem;
     text-align: center;
-    margin-bottom: 0.15rem !important;
+    margin-bottom: 0.17rem !important;
   }
   .serve_firstSection_down_one_p {
     width: 100%;
@@ -440,7 +440,7 @@
     letter-spacing: 0.048rem;
     line-height: 0.25rem;
     text-align: center;
-    margin-bottom: 0.15rem !important;
+    margin-bottom: 0.25rem !important;
   }
 
   .container {
@@ -448,7 +448,7 @@
   }
   .firstSection_container {
     width: 90%;
-    height: auto;
+    height: 100%;
     margin: 0 auto !important;
     padding-bottom: 0.25rem;
     position: absolute;
@@ -460,20 +460,17 @@
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
   }
-  .firstSection_down_text {
-    height: auto;
-  }
 
   .firstSection_img {
     float: none !important;
     width: 2.19rem !important;
     height: 2.37rem;
-    margin: 0.1rem auto 0.27rem;
+    margin: 0.3rem auto 0.27rem;
     padding: 0 !important;
   }
   .serve_firstSection_img {
     float: none !important;
-    width: 2.19rem !important;
+    width: 2.86rem !important;
     height: 2.37rem;
     margin: 0.2rem auto;
     padding: 0 !important;
@@ -483,9 +480,9 @@
   }
   .about_firstSection_img {
     float: none !important;
-    width: 54.85429% !important;
+    width: 2.217rem !important;
     //height: 39.9666%;
-    margin: 13.7% auto 13.7%;
+    margin: 13.7% auto 0.56rem;
     padding: 0 !important;
   }
   .about_firstSection_img img {
@@ -493,8 +490,28 @@
     height: auto;
   }
 
-  .firstSection_down_two_p, .serve_firstSection_down_two_p {
-    width: 95%;
+  .firstSection_down_two_p {
+    width: 2.85rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.11rem;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    line-height: 0.18rem;
+    text-align: center;
+    margin: 0 auto !important;
+  }
+  .serve_firstSection_down_two_p {
+    width: 2.96rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.11rem;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    line-height: 0.18rem;
+    text-align: center;
+    margin: 0 auto !important;
+  }
+  .about_firstSection_down_two_p {
+    width: 2.65rem;
     font-family: PingFangSC-Regular;
     font-size: 0.11rem;
     color: #FFFFFF;
@@ -512,10 +529,18 @@
     color: #0080FF;
     letter-spacing: 2.25px;
     line-height: 0.18rem;
-    margin: 0.3rem auto;
+    margin: 0.47rem auto;
   }
-  .firstSection_down_text {
+  .serve_down_text {
+    margin-top: 0.98rem;
+  }
+  .about_down_text {
+    margin-top: 1.5rem;
+  }
+  .firstSection_down_text, .about_down_text, .serve_down_text {
     width: 100%;
+    height: auto;
+    //margin-top: 0.61rem;
     text-align: center;
     display: -webkit-box;
     display: -moz-box;
@@ -537,7 +562,7 @@
     width: 100%;
     height: 100%;
     flex-flow: row;
-    margin-top: 0.3rem;
+    margin-top: 0.48rem;
   }
   .down_text {
     height: 100%;
@@ -636,9 +661,6 @@
     margin: 0 !important;
   }
 
-  .twoSection_container_img {
-    width: 73.927%;
-  }
   .twoSection_container_inner {
     text-align: center;
     margin-top: 0.1rem;
@@ -665,6 +687,9 @@
     line-height: 0.18rem;
     position: relative;
     margin: 0;
+  }
+  .twoSection_img {
+    margin-top: 0.3rem;
   }
   .twoSection_container_inner span {
     display: inline-block;
@@ -793,9 +818,7 @@
     width: 100%;
     margin: 0 !important;
   }
-  .twoSection_container_img {
-    width: 62.769%;
-  }
+
   .last_five_home_container {
     width: 3.25rem;
     padding-bottom: 0;
@@ -861,7 +884,7 @@
     width: 100%;
   }
   .about_container_img, .server_grade_img, .server_what_img, .twoSection_container_img, .twoSection_container_img_all, .twoSection_container_img_depth, .twoSection_container_img_down {
-    width: 2.2rem;
+    width: 2.04rem;
   }
   .wx_img {
     width: 1.2rem;

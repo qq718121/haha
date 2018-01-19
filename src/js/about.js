@@ -29,6 +29,7 @@ $(document).ready(function () {
             icon_animate(index);
         },
         'onLeave': function (index, nextIndex, direction) {
+            $('#example-navbar-collapse').collapse('hide');
             nav_scrool(nextIndex);
             removeClass(nextIndex);
         }
