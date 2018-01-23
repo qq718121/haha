@@ -35,11 +35,17 @@ vipspa.start({
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
         recalc = function () {
             var clientWidth = docEl.clientWidth;
+            //适配有底部工具栏的浏览器
+            var h = window.innerHeight - document.documentElement.clientWidth;
             if (!clientWidth) return;
             if (clientWidth >= 1440) {
                 docEl.style.fontSize = '100px';
             } else if (clientWidth < 768) {
-                docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                if (h < 200) {
+                    docEl.style.fontSize = 100 * (clientWidth / 415) + 'px';
+                } else {
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                }
             } else if (clientWidth < 992) {
                 docEl.style.fontSize = 100 * (clientWidth / 992) + 'px';
             } else {

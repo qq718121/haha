@@ -2,6 +2,7 @@
  * Created by lenovo on 2018/1/5.
  */
 $(document).ready(function () {
+
     var eng = /^1[3|4|5|8][0-9]\d{4,8}$/;
     var url = 'http://47.95.233.255:8081/maijiabangbackstate-1.0-SNAPSHOT';
     var is_ = true;
