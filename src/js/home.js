@@ -118,7 +118,6 @@ $(document).ready(function () {
                         }
                     }
                 }
-                console.log(is_);
                 if (is_ == true) {
                     $('#myForm').attr('action', url + '/appUserScoreController/appointBuildInfo');
                     $('#myForm').submit();
@@ -164,5 +163,4 @@ $(document).ready(function () {
     $('#fp-nav').addClass('right_change_white');
     nav_init(ul[0], ul, 1);
     input_blur();
-})
-;
+});

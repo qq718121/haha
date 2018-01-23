@@ -2,13 +2,6 @@
  * Created by lenovo on 2018/1/9.
  */
 
-window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
-    alert("错误信息：", errorMessage);
-    alert("出错文件：", scriptURI);
-    alert("出错行号：", lineNumber);
-    alert("出错列号：", columnNumber);
-    alert("错误详情：", errorObj);
-}
 rotate();
 pushState_navHide();
 
@@ -267,52 +260,58 @@ function removeClass(index, nextIndex, serve_is) {
     }
 }
 //卡片左右角的icon动画
+var left = $('.twoSection_container_left');
+var r = $('.twoSection_container_right');
+var la = 'twoSection_container_left_animate';
+var ra = 'twoSection_container_right_animate';
+var al = $('.advantage_container_left');
+var ar = $('.advantage_container_right');
 function icon_animate(index) {
     switch (index) {
         case 1:
             break;
         case 2:
-            animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
-            animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+            animated(left, '', la);
+            animated(r, '', ra);
             setTimeout(function () {
-                animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
-                animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                animated(left, la, '');
+                animated(r, ra, '');
             }, 850);
-            animated($('.advantage_container_left'), '', 'twoSection_container_left_animate');
-            animated($('.advantage_container_right'), '', 'twoSection_container_right_animate');
+            animated(al, '', la);
+            animated(ar, '', ra);
             setTimeout(function () {
-                animated($('.advantage_container_left'), 'twoSection_container_left_animate', '');
-                animated($('.advantage_container_right'), 'twoSection_container_right_animate', '');
+                animated(al, la, '');
+                animated(ar, ra, '');
             }, 850);
             break;
         case 3:
-            animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
-            animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+            animated(left, '', la);
+            animated(r, '', ra);
             setTimeout(function () {
-                animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
-                animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                animated(left, la, '');
+                animated(r, ra, '');
             }, 850);
-            animated($('.advantage_container_left'), '', 'twoSection_container_left_animate');
-            animated($('.advantage_container_right'), '', 'twoSection_container_right_animate');
+            animated(al, '', la);
+            animated(ar, '', ra);
             setTimeout(function () {
-                animated($('.advantage_container_left'), 'twoSection_container_left_animate', '');
-                animated($('.advantage_container_right'), 'twoSection_container_right_animate', '');
+                animated(al, la, '');
+                animated(ar, ra, '');
             }, 850);
             break;
         case 4:
-            animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
-            animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+            animated(left, '', la);
+            animated(r, '', ra);
             setTimeout(function () {
-                animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
-                animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                animated(left, la, '');
+                animated(r, ra, '');
             }, 850);
             break;
         case 5:
-            animated($('.twoSection_container_left'), '', 'twoSection_container_left_animate');
-            animated($('.twoSection_container_right'), '', 'twoSection_container_right_animate');
+            animated(left, '', la);
+            animated(r, '', ra);
             setTimeout(function () {
-                animated($('.twoSection_container_left'), 'twoSection_container_left_animate', '');
-                animated($('.twoSection_container_right'), 'twoSection_container_right_animate', '');
+                animated(left, la, '');
+                animated(r, ra, '');
             }, 850);
             break;
     }
