@@ -8,16 +8,6 @@ $(document).ready(function () {
     var az = $('.firstSection_down_btn_az');
     var ip = $('.firstSection_down_btn_phone');
     var url = 'https://itunes.apple.com/cn/app/%E9%B9%B0%E7%9C%BC%E9%89%B4%E6%88%BF/id1298408736?mt=8';
-    nav_init(ul[1], ul, 2);
-    function down_checkout() {
-        az.click(function () {
-            $(".QR_cord").fadeToggle(700);
-        });
-        ip.click(function () {
-            $(location).attr('href', url);
-        });
-    }
-
 //初始化整屏滑动
     if ($('html').hasClass('fp-enabled')) {
         $.fn.fullpage.destroy('all');
@@ -35,19 +25,56 @@ $(document).ready(function () {
         'keyboardScrolling': true,
         'touchSensitivity': 0,//在移动设备中滑动页面的敏感性，默认为5最高100，越大越难滑动
         'resize ': true,
+        'afterRender': function () {
+            a = 1;
+            $('.firstSection_img').animateCss('fadeInUpBig');
+            $('.firstSection_down_one_p').animateCss('fadeInUpBig');
+            $('.firstSection_down_two_p').animateCss('fadeInUpBig');
+            $('.down_btn').animateCss('fadeInUpBig');
+            $('#section3').addClass('section_padding');
+            $('#fullpage').css('display', 'block');
+            $('#fp-nav').addClass('right_change_white');
+            down_checkout();
+            nav_init(ul[1], ul, 2);
+        },
         'afterLoad': function (anchorLink, index) {
+            $(".QR_cord").hide(700);
             icon_animate(index);
         },
         'onLeave': function (index, nextIndex, direction) {
             $('#example-navbar-collapse').collapse('hide');
             nav_scrool(nextIndex);
-            removeClass(nextIndex);
+            animate_css(nextIndex, direction);
         }
     });
-    a = 1;
-    $('#section3').addClass('section_padding');
-    $('#fullpage').css('display', 'block');
-    removeClass(1);
-    $('#fp-nav').addClass('right_change_white');
-    down_checkout();
+    function animate_css(nextIndex, direction) {
+
+        if (nextIndex == 2 && direction == 'down') {
+            $('.twoSection_container_img_watch').animateCss('fadeInUpBig');
+            $('.twoSection_container_watch h1').animateCss('fadeInUpBig');
+            $('.twoSection_container_watch span').animateCss('fadeInUpBig');
+            $('.twoSection_container_watch p').animateCss('fadeInUpBig');
+        }
+        if (nextIndex == 3 && direction == 'down') {
+            $('.twoSection_container_img_down').animateCss('fadeInUpBig');
+            $('.twoSection_container_inner h1').animateCss('fadeInUpBig');
+            $('.twoSection_container_inner span').animateCss('fadeInUpBig');
+            $('.twoSection_container_inner p').animateCss('fadeInUpBig');
+        }
+        if (nextIndex == 4 && direction == 'down') {
+            $('.twoSection_container_img_all').animateCss('fadeInUpBig');
+            $('.twoSection_container_all h1').animateCss('fadeInUpBig');
+            $('.twoSection_container_all span').animateCss('fadeInUpBig');
+            $('.twoSection_container_all p').animateCss('fadeInUpBig');
+        }
+    }
+
+    function down_checkout() {
+        az.click(function () {
+            $(".QR_cord").fadeToggle(700);
+        });
+        ip.click(function () {
+            $(location).attr('href', url);
+        });
+    }
 });

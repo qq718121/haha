@@ -6,10 +6,10 @@
     <meta name="theme-color" content="#000000">
     <title>鹰眼鉴房app下载</title>
     <link rel="shortcut icon" href="./images/favicon.png">
-    <script src="./js/setFontsize.min.js"></script>
+    <script src="./js/setFontsize_appdown.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script>
-        setFontsize()
+        setFontsize();
         window.onresize = function () {
             setFontsize()
         }
@@ -74,12 +74,12 @@
             var u = navigator.userAgent;
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-            if (isAndroid) {
+            if (!isiOS) {
                 window.location.href = 'http://owvcynyz1.bkt.clouddn.com/homehawkeye1.1.1.apk'
             } else {
                 window.location.href = 'https://itunes.apple.com/cn/app/%E9%B9%B0%E7%9C%BC%E9%89%B4%E6%88%BF/id1298408736?mt=8'
             }
-        })
+        });
         //判断是否微信登陆
         function isWeiXin() {
             var ua = window.navigator.userAgent.toLowerCase();

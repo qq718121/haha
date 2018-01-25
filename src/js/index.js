@@ -2,10 +2,16 @@
  * Created by lenovo on 2018/1/9.
  */
 
-rotate();
-pushState_navHide();
-
 //span初始化
+//获取导航icon的移动元素
+var div = $('.page_icon');
+var position;
+var target;
+var tween, tweenBack;
+var pos;
+var a;
+var ul = $('#nav_avtive li');
+
 vipspa.start({
     view: '#content',// 页面路由的div
     router: {
@@ -29,97 +35,26 @@ vipspa.start({
     },
     errorTemplateId: '#error'//错误显示页面
 });
-
-(function (doc, win) {
-    var docEl = doc.documentElement,
-        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-        recalc = function () {
-            var clientWidth = docEl.clientWidth;
-            //适配有底部工具栏的浏览器
-            var h = window.innerHeight - document.documentElement.clientWidth;
-            if (!clientWidth) return;
-            if (clientWidth >= 1440) {
-                docEl.style.fontSize = '100px';
-            } else if (clientWidth < 768) {
-                if (h < 200) {
-                    docEl.style.fontSize = 100 * (clientWidth / 415) + 'px';
-                } else {
-                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
-                }
-            } else if (clientWidth < 992) {
-                docEl.style.fontSize = 100 * (clientWidth / 992) + 'px';
-            } else {
-                docEl.style.fontSize = 100 * (clientWidth / 1440) + 'px';
-            }
-        };
-    if (!doc.addEventListener) return;
-    recalc();
-    win.addEventListener(resizeEvt, recalc, false);
-    doc.addEventListener('DOMContentLoaded', recalc, false);
-})(document, window);
-// 自调用函数用来对页面宽度,及是否旋转屏幕的宽度大于640px进行判断.
-// 对浏览器的UserAgent进行正则匹配，不含有微信独有标识的则为其他浏览器
-
-setTimeout(showPage, 1);
-//点击外层收起导航
-$('body').click(function () {
-    $('#example-navbar-collapse').collapse('hide');
+rotate();
+pushState_navHide();
+collapse_();
+$.fn.extend({
+    animateCss: function (animationName) {
+        $.fn.fullpage.setAllowScrolling(false);
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function () {
+            $(this).removeClass('animated ' + animationName);
+            $.fn.fullpage.setAllowScrolling(true);
+        });
+    }
 });
 
-//利用requestAnimationFrame对JQ的动画进行相对的优化
-var lastTime = 0;
-var prefixes = 'webkit moz ms o'.split(' '); //各浏览器前缀
-var requestAnimationFrame = window.requestAnimationFrame;
-var cancelAnimationFrame = window.cancelAnimationFrame;
-var prefix;
-//通过遍历各浏览器前缀，来得到requestAnimationFrame和cancelAnimationFrame在当前浏览器的实现形式
-for (var i = 0; i < prefixes.length; i++) {
-    if (requestAnimationFrame && cancelAnimationFrame) {
-        break;
-    }
-    prefix = prefixes[i];
-    requestAnimationFrame = requestAnimationFrame || window[prefix + 'RequestAnimationFrame'];
-    cancelAnimationFrame = cancelAnimationFrame || window[prefix + 'CancelAnimationFrame'] || window[prefix + 'CancelRequestAnimationFrame'];
+function collapse_() {
+    //点击外层收起导航
+    $('body').click(function () {
+        $('#example-navbar-collapse').collapse('hide');
+    });
 }
-
-//如果当前浏览器不支持requestAnimationFrame和cancelAnimationFrame，则会退到setTimeout
-if (!requestAnimationFrame || !cancelAnimationFrame) {
-    requestAnimationFrame = function (callback, element) {
-        var currTime = new Date().getTime();
-        //为了使setTimteout的尽可能的接近每秒60帧的效果
-        var timeToCall = Math.max(0, 16 - ( currTime - lastTime ));
-        var id = window.setTimeout(function () {
-            callback(currTime + timeToCall);
-        }, timeToCall);
-        lastTime = currTime + timeToCall;
-        return id;
-    };
-    cancelAnimationFrame = function (id) {
-        window.clearTimeout(id);
-    };
-}
-
-//得到兼容各浏览器的API
-window.requestAnimationFrame = requestAnimationFrame;
-window.cancelAnimationFrame = cancelAnimationFrame;
-
-function showPage() {
-    var bdy = document.body;
-    bdy.style.visibility = "visible";
-}
-// 解决一个bug,系统通过计算窗口宽高需要一个时间进行处理,结果就是,上来页面先
-// 是加载的没有样式的,过一秒从上往下渲染,可以给body加一个计时器,1毫秒后
-// 显示不影响效果
-
-//获取导航icon的移动元素
-var div = $('.page_icon');
-var position;
-var target;
-var tween, tweenBack;
-var pos;
-var a;
-var ul = $('#nav_avtive li');
-
 //利用tween.js实现导航icon的点击移动特效
 function init(index, num) {
     position = {x: num};
@@ -185,32 +120,31 @@ function animated($, re, add) {
 }
 
 //封装一个元素class动画，指定第几个执行
-var class_animated = function (one, two, three, four, five, six, seven, eight, to_, serve_to, num) {
-    var len = arguments.length;
-    var arr = [];
-    for (var i = 0; i < len; i++) {
-        if (arguments[i]) {
-            var defualt = `${arguments[i]}Animate`;
-            arr.push(defualt);
-            var j = $(`.${arr[i]}`);
-            (function (e, n) {
-                requestAnimationFrame(function () {
-                    e.stop(true, true);
-                    if (serve_to) {
-                        e.css('top', serve_to).css('opacity', '0');
-                    } else {
-                        e.css('top', to_).css('opacity', '0');
-                    }
-                    e.css('display', 'none');
-                    e.css('display', '');
-                    e.animate({'top': '0', 'opacity': '1'}, n);
-                });
-            })(j, num);
-            num += 150;
-        }
-        continue;
-    }
-};
+// var class_animated = function (one, two, three, four, five, six, seven, eight, to_, serve_to, num) {
+//     var len = arguments.length;
+//     var arr = [];
+//     // for (var i = 0; i < len; i++) {
+//     //     if (arguments[i]) {
+//     //         var defualt = `${arguments[i]}Animate`;
+//     //         arr.push(defualt);
+//     //         var j = $(`.${arr[i]}`);
+//     //         (function (e, n) {
+//     //             e.transition({display: 'none'}, 1, 'linear', function () {
+//     //                 e.transition({translate: [0, '100px']}, 1, 'linear', function () {
+//     //                     setTimeout(function () {
+//     //                         e.transition({display: ''}, 1, 'linear', function () {
+//     //                             e.transition({translate: [0, '0px']}, 600, 'linear', function () {
+//     //                             });
+//     //                         });
+//     //                     }, num);
+//     //                 });
+//     //             });
+//     //         })(j, num);
+//     //         num += 150;
+//     //     }
+//     //     continue;
+//     // }
+// };
 function navigator_win() {
     var system = {
         win: false,
@@ -227,52 +161,53 @@ function navigator_win() {
 }
 //根据当前的section执行相应的动画
 
-function removeClass(index, nextIndex, serve_is) {
-    //平台、设备和操作系统
-    if (index !== nextIndex) {
-        switch (index) {
-            case 1:
-                class_animated('lx_one', 'lx_two', 'lx_three', '', '', '', '', '', '900px', '', 800);
-                break;
-            case 2:
-                if (navigator_win().win || navigator_win().mac || navigator_win().xll) {
-                    class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '', 800);
-                } else {
-                    if (a == 2) {
-                        class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '180px', 300);
-                    } else {
-                        class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '', 800);
-                    }
-                }
-                break;
-            case 3:
-                if (navigator_win().win || navigator_win().mac || navigator_win().xll) {
-                    class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '', 800);
-                } else {
-                    if (a == 0) {
-                        class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '200px', 300);
-                    } else {
-                        class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '', 800);
-                    }
-                }
-                break;
-            case 4:
-                class_animated('zy_one', 'zy_two', 'zy_three', 'zy_four', 'zy_five', 'zy_six', 'zy_seven', 'zy_eight', '900px', '', 800);
-                break;
-            case 5:
-                class_animated('yy_one', 'yy_two', 'yy_three', 'yy_four', 'yy_five', 'yy_six', 'yy_seven', 'yy_eight', '900px', '', 800);
-                break;
-        }
-    }
-}
+// function removeClass(index, nextIndex, serve_is) {
+//     //平台、设备和操作系统
+//     if (index !== nextIndex) {
+//         switch (index) {
+//             case 1:
+//                 class_animated('lx_one', 'lx_two', 'lx_three', '', '', '', '', '', '900px', '', 800);
+//                 break;
+//             case 2:
+//                 if (navigator_win().win || navigator_win().mac || navigator_win().xll) {
+//                     class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '', 800);
+//                 } else {
+//                     if (a == 2) {
+//                         class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '180px', 300);
+//                     } else {
+//                         class_animated('rh_one', 'rh_two', 'rh_three', 'rh_four', 'rh_five', 'rh_six', '', '', '900px', '', 800);
+//                     }
+//                 }
+//                 break;
+//             case 3:
+//                 if (navigator_win().win || navigator_win().mac || navigator_win().xll) {
+//                     class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '', 800);
+//                 } else {
+//                     if (a == 0) {
+//                         class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '200px', 300);
+//                     } else {
+//                         class_animated('ql_one', 'ql_two', 'ql_three', 'ql_four', 'ql_five', 'ql_six', 'ql_seven', 'ql_eight', '900px', '', 800);
+//                     }
+//                 }
+//                 break;
+//             case 4:
+//                 class_animated('zy_one', 'zy_two', 'zy_three', 'zy_four', 'zy_five', 'zy_six', 'zy_seven', 'zy_eight', '900px', '', 800);
+//                 break;
+//             case 5:
+//                 class_animated('yy_one', 'yy_two', 'yy_three', 'yy_four', 'yy_five', 'yy_six', 'yy_seven', 'yy_eight', '900px', '', 800);
+//                 break;
+//         }
+//     }
+// }
 //卡片左右角的icon动画
-var left = $('.twoSection_container_left');
-var r = $('.twoSection_container_right');
-var la = 'twoSection_container_left_animate';
-var ra = 'twoSection_container_right_animate';
-var al = $('.advantage_container_left');
-var ar = $('.advantage_container_right');
+
 function icon_animate(index) {
+    var left = $('.twoSection_container_left');
+    var r = $('.twoSection_container_right');
+    var la = 'twoSection_container_left_animate';
+    var ra = 'twoSection_container_right_animate';
+    var al = $('.advantage_container_left');
+    var ar = $('.advantage_container_right');
     switch (index) {
         case 1:
             break;
