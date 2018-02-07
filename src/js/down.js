@@ -74,7 +74,7 @@ $(document).ready(function () {
             $(".QR_cord").fadeToggle(700);
         });
         ip.click(function () {
-            $(location).attr('href', url);
+            window.open(url);
         });
     }
 });
