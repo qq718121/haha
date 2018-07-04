@@ -1,100 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <!--禁止百度的转码显示-->
-    <meta http-equiv="Cache-Control" content="no-transform"/>
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
     <!--WebApp全屏模式   隐藏地址栏-->
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>鹰眼鉴房，理性决策，质选优房</title>
-    <meta name="keywords" content="鹰眼鉴房，鹰眼，新房，二手房，房产质量，房产数据服务平台，专注楼盘质量，房产大数据"/>
-    <meta name="description" content="鹰眼鉴房，国内首家专注于楼盘质量的房产数据信息服务平台，在全方位房产质量大数据支持下，协助更多购房人更加轻松、便捷地甄选优质房产。"/>
-    <meta name="copyright" content="北京买家帮网络信息有限公司">
-    <link rel="stylesheet" href="./css/common.min.css">
-    <!--<link rel="stylesheet" href="./css/first_page.min.css">-->
-    <!--<link rel="stylesheet" href="./css/index.min.css">-->
-    <!-- libs-css -->
-    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/examples.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/build.min.css"/>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
-</head>
-<body>
-<div class="modal_">
-    <div class="modal_inner">
-        <h1>成功预约查询</h1>
-        <p>感谢您的申请</p>
-        <p>我们会加紧上线您所在城市的进度</p>
-        <button>确定</button>
-    </div>
-</div>
-<div class="preventTran">
-    <div class="child_preventTran">
-        <div class="img_preventTran">
-            <img src="data:image/png;base64,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"
-                 alt="">
-        </div>
-        <p>为了您的良好体验</p>
-        <p>请将手机/平板竖屏操作</p>
-    </div>
-</div>
-<header>
-    <nav class="nav_ active_one navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="nav_continer">
-                <div class="container-fluid">
-                    <div class="header_logo"><img src='http://oxrgdeqd8.bkt.clouddn.com/logo-white@3x.png' alt=""></div>
-                    <div class="navbar-header">
-                        <button type="button" class="active_icon_white navbar-toggle" data-toggle="collapse"
-                                data-target="#example-navbar-collapse">
-                            <span class="sr-only">切换导航</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="example-navbar-collapse" aria-expanded="false">
-                        <ul id="nav_avtive" class=" nav navbar-nav  navbar-right">
-                            <li class="active"><a onfocus="this.blur()" href="#/home">首页</a></li>
-                            <li><a onfocus="this.blur()" href="#/down">下载</a></li>
-                            <li><a onfocus="this.blur()" href="#/serve">服务</a></li>
-                            <li><a onfocus="this.blur()" href="#/about">关于</a></li>
-                            <span class="page_icon"></span>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
-<div id="content"></div>
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/oriention.min.js"></script>
-<!--<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <meta name="keywords" content="鹰眼鉴房，鹰眼，新房，二手房，房产质量，房产数据服务平台，专注楼盘质量，房产大数据" />
+    <meta name="description" content="鹰眼鉴房，国内首家专注于楼盘质量的房产数据信息服务平台，在全方位房产质量大数据支持下，协助更多购房人更加轻松、便捷地甄选优质房产。" />
+    <meta id='rem' name="copyright" content="北京买家帮网络信息有限公司">
+    <script>
+        "use strict";
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/jquery-easing/1.4.1/jquery.easing.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery.transit/0.9.12/jquery.transit.min.js"></script>
-<!--<script type="text/javascript" src="js/build.min.js"></script>-->
-<script type="text/javascript" src="js/setFontsize.min.js"></script>
-<script type="text/javascript" src="js/libs/examples.min.js"></script>
-<script type="text/javascript" src="js/libs/vipspa.min.js"></script>
-<script type="text/javascript" src="js/index.min.js"></script>
-<!--<script type="text/javascript" src="js/first_section.min.js"></script>-->
-<script type="text/javascript" src="js/libs/jquery.fullPage.min.js"></script>
+        function create_script(e) {
+            var t = (document.getElementById("rem"), document.createElement("script"));
+            t.type = "text/javascript", t.src = e, document.getElementsByTagName("head")[0].appendChild(t), t = null
+        }
+
+        function px2rem() {
+            var e = navigator.userAgent.toLowerCase(),
+                t = "ipad" == e.match(/ipad/i),
+                i = "iphone os" == e.match(/iphone os/i),
+                c = "midp" == e.match(/midp/i),
+                a = "rv:1.2.3.4" == e.match(/rv:1.2.3.4/i),
+                m = "ucweb" == e.match(/ucweb/i),
+                n = "android" == e.match(/android/i),
+                r = "windows ce" == e.match(/windows ce/i),
+                o = "windows mobile" == e.match(/windows mobile/i);
+            (t || i || c || a || m || n || r || o) && create_script("./vendor/rem.min.js")
+        }
+        px2rem();
+    </script>
+    <link rel="stylesheet" href="./css/build.min.css">
+</head>
+
+<body>
+    <div id="content" style='height: 100%'></div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#content').load('./components/mjb.html');
+            console.log(window.innerWidth);
+        })
+    </script>
 
 </body>
+
 </html>

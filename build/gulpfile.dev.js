@@ -44,7 +44,9 @@ function dev() {
     gulp.task('css:dev', function () {
         return gulp.src(Config.css.src)
             .pipe(minifyCss())
-            .pipe(rename({suffix: '.min'})) // 重命名
+            .pipe(rename({
+                suffix: '.min'
+            })) // 重命名
             .pipe(autoprefixer({
                 browsers: ['last 2 versions', 'Android >= 4.0'],
                 cascade: true, //是否美化属性值 默认：true 像这样：
@@ -72,7 +74,9 @@ function dev() {
                 remove: true //是否去掉不必要的前缀 默认：true
             }))
             .pipe(minifyCss())
-            .pipe(rename({suffix: '.min'})) // 重命名
+            .pipe(rename({
+                suffix: '.min'
+            })) // 重命名
             .pipe(gulp.dest(Config.sass.dist))
             .pipe(reload({
                 stream: true
@@ -87,10 +91,31 @@ function dev() {
                 presets: [es2015]
             }))
             .pipe(jshint('.jshintrc'))
-            .pipe(rename({suffix: '.min'})) // 重命名
+            .pipe(rename({
+                suffix: '.min'
+            })) // 重命名
             .pipe(uglify()) // 使用uglify进行压缩，并保留部分注释
             .pipe(jshint.reporter('default'))
             .pipe(gulp.dest(Config.js.dist))
+            .pipe(reload({
+                stream: true
+            }));
+    });
+    /**
+     * vendor处理
+     */
+    gulp.task('vendor:dev', function () {
+        return gulp.src(Config.vendor.src)
+            .pipe(babel({
+                presets: [es2015]
+            }))
+            .pipe(jshint('.jshintrc'))
+            .pipe(rename({
+                suffix: '.min'
+            })) // 重命名
+            .pipe(uglify()) // 使用uglify进行压缩，并保留部分注释
+            .pipe(jshint.reporter('default'))
+            .pipe(gulp.dest(Config.vendor.dist))
             .pipe(reload({
                 stream: true
             }));
@@ -101,9 +126,9 @@ function dev() {
     gulp.task('images:dev', function () {
         return gulp.src(Config.img.src)
             .pipe(imagemin({
-                optimizationLevel: 3
-                , progressive: true
-                , interlaced: true
+                optimizationLevel: 3,
+                progressive: true,
+                interlaced: true
             })).pipe(gulp.dest(Config.img.dist))
             .pipe(reload({
                 stream: true
@@ -113,8 +138,8 @@ function dev() {
         browserSync.init({
             server: {
                 baseDir: Config.dist
-            }
-            , notify: false
+            },
+            notify: false
         });
         // Watch .html files
         gulp.watch(Config.html.src, ['html:dev']);
@@ -128,6 +153,8 @@ function dev() {
         gulp.watch(Config.js.src, ['js:dev']);
         // Watch image files
         gulp.watch(Config.img.src, ['images:dev']);
+        //Watch vendor files
+        gulp.watch(Config.vendor.src, ['vendor:dev']);
     });
 }
 //======= gulp dev 开发环境下 ===============

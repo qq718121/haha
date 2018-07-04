@@ -15,7 +15,7 @@ let gulp = require('gulp'),
     es2015 = require('babel-preset-es2015'),
     changed = require('gulp-changed'),
     pngquant = require('gulp-pngquant'), //深度压缩
-    rev = require('gulp-rev'),                    //- 对css、js文件名加MD5后缀
+    rev = require('gulp-rev'), //- 对css、js文件名加MD5后缀
     Config = require('./gulpfile.config.js');
 
 //======= gulp build 打包资源 ===============
@@ -78,7 +78,7 @@ function prod() {
 
     gulp.task('js', function () {
         return gulp.src([Config.js.src])
-        // .pipe(sourcemaps.init()) // 执行sourcemaps
+            // .pipe(sourcemaps.init()) // 执行sourcemaps
             .pipe(babel({
                 presets: [es2015]
             }))
@@ -87,10 +87,38 @@ function prod() {
             .pipe(rename({
                 suffix: '.min'
             }))
-            .pipe(uglify({mangle: {except: ['require', 'exports', 'module', '$']}}))
+            .pipe(uglify({
+                mangle: {
+                    except: ['require', 'exports', 'module', '$']
+                }
+            }))
             // .pipe(rev())
             // .pipe(sourcemaps.write('maps')) // 地图输出路径（存放位置)
             .pipe(gulp.dest(Config.js.dist));
+    });
+
+    /**
+     * vendor处理
+     */
+    gulp.task('vendor', function () {
+        return gulp.src([Config.vendor.src])
+            // .pipe(sourcemaps.init()) // 执行sourcemaps
+            .pipe(babel({
+                presets: [es2015]
+            }))
+            .pipe(jshint('.jshintrc'))
+            .pipe(jshint.reporter('default'))
+            .pipe(rename({
+                suffix: '.min'
+            }))
+            .pipe(uglify({
+                mangle: {
+                    except: ['require', 'exports', 'module', '$']
+                }
+            }))
+            // .pipe(rev())
+            // .pipe(sourcemaps.write('maps')) // 地图输出路径（存放位置)
+            .pipe(gulp.dest(Config.vendor.dist));
     });
     /**
      * 合并所有js文件并做压缩处理
@@ -120,12 +148,14 @@ function prod() {
             .pipe(changed(Config.img.dist)) // 对比文件是否有过改动（此处填写的路径和输出路径保持一致）
             .pipe(imagemin({
                 progressive: true, // 无损压缩JPG图片
-                svgoPlugins: [{removeViewBox: false}], // 不移除svg的viewbox属性
+                svgoPlugins: [{
+                    removeViewBox: false
+                }], // 不移除svg的viewbox属性
                 use: [pngquant()] // 使用pngquant插件进行深度压缩
             }))
             // .pipe(rev())
             .pipe(gulp.dest(Config.img.dist));
     });
-    gulp.task('build', ['html', 'css', 'sass', 'assets', 'images', 'js', 'js-concat']);
+    gulp.task('build', ['html', 'css', 'sass', 'assets', 'images', 'js', 'vendor', 'js-concat']);
 }
 module.exports = prod;
